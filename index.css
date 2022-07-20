@@ -20,6 +20,14 @@ body {
     display: inline-flex;
 }
 
+.myself {
+    transition: transform .5s;
+}
+
+/*.avatar-container:hover {*/
+/*    transform: scale(1.2); !* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) *!*/
+/*}*/
+
 #me {
     object-fit: cover;
     width: 100%;

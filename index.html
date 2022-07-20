@@ -9,12 +9,13 @@
 </head>
 
 <body>
-    <div class='centered'>
-        <div>
-            <h1>Vlad Mutilic&#259;</h1>
-            <div class="avatar-container">
-                <img id="me" src="Avatar.jpg" alt="Me">
-            </div>
+<div class='centered'>
+    <div>
+        <h1>Vlad Mutilic&#259;</h1>
+        <div class="avatar-container" class="avatar-container">
+            <img id="me" src="Avatar.jpg" alt="Me" class="me", onmouseover="expand()", onmouseout="contract()">
+        </div>
+        <div id="contents" class="contents">
             <p>Hi, I'm a Computer Science graduate from Swansea University.</p>
             <p>This is my <a href="Resume.pdf">résumé</a>.</p>
             <p>
@@ -23,12 +24,20 @@
                 </a></p>
             <noscript>Sorry, you need Javascript on to email me.</noscript>
             <hr>
-            <div id="links">
-                <a href="https://github.com/vl4duu">GitHub</a>
-                <a href="https://www.linkedin.com/in/vlad-mutilica/">LinkedIn</a>
+            <div id="logos">
+
+                <a href="https://github.com/vl4duu"><img src="logos/github_logo.png" alt="gitHub"
+                                                         style="width:42px;height:42px;"></a>
+                <a href="https://www.linkedin.com/in/vlad-mutilica/"><img src="logos/linkedIn_logo.png" alt="gitHub"
+                                                                          style="width:42px;height:42px;"></a>
             </div>
         </div>
     </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="main.js"></script>
+
 </body>
 
 </html>
