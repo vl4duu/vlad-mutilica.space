@@ -10,12 +10,11 @@
   },
   "scripts": {
     "start": "parcel src/views/index/index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build src/views/index/index.html"
   },
   "name": "vlad-mutilica.space",
   "version": "1.0.0",
   "description": "<h4>personal website designed to serve as a carte de visite  card</h3>",
-  "main": "animations.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vl4duu/vlad-mutilica.space.git"
