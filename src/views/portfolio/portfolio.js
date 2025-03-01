@@ -1,8 +1,5 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import { LitElement, html } from "lit";
-import styles from "./stylesheet.scss" with {type: 'scss'}
 /*------------------------------
 Register plugins
 ------------------------------*/
@@ -34,9 +31,3 @@ tl.to('.accordion', {
   marginBottom: -15,
   stagger: .5,
 }, '<')
-
-export class MyElement extends LitElement {
-}
-
-customElements.define('my-element', MyElement);
-
