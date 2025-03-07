@@ -5,6 +5,11 @@ body {
   background: linear-gradient(120deg, #347277 13.57%, #2b1852 98.38%);
 }
 
+html, body {
+  overscroll-behavior: none; /* Disables overscrolling effect */
+}
+
+
 .pageTitle {
   position: fixed;
   padding-left: 20px;
