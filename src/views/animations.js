@@ -1,4 +1,17 @@
-function expand() {
+document.addEventListener('DOMContentLoaded', function () {
+  const image = document.getElementById('me');
+
+  image.addEventListener('mouseover', () => {
+    expand()
+  });
+
+  image.addEventListener('mouseout', () => {
+     contract()
+  });
+});
+
+
+export function expand() {
     new anime({
         targets: '.avatar-container',
         scale: [
@@ -16,7 +29,7 @@ function expand() {
     })
 }
 
-function contract() {
+export function contract() {
     new anime({
         targets: '.avatar-container',
         scale: [
