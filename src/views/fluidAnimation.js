@@ -72,7 +72,7 @@ let config = {
     COLOR_UPDATE_SPEED: 5,
     PAUSED: false,
     BACK_COLOR: {r: 0, g: 0, b: 0},
-    TRANSPARENT: false,
+    TRANSPARENT: true,
     BLOOM: true,
     BLOOM_ITERATIONS: 8,
     BLOOM_RESOLUTION: 256,
@@ -129,7 +129,6 @@ function getWebGLContext(canvas) {
     const isWebGL2 = !!gl;
     if (!isWebGL2)
         gl = canvas.getContext('webgl', params) || canvas.getContext('experimental-webgl', params);
-    drawTransparentBackground(gl, canvas.width, canvas.height);
 
     let halfFloat;
     let supportLinearFiltering;
@@ -513,24 +512,6 @@ const colorShader = compileShader(gl.FRAGMENT_SHADER, `
 
     void main () {
         gl_FragColor = color;
-    }
-`);
-
-const checkerboardShader = compileShader(gl.FRAGMENT_SHADER, `
-    precision highp float;
-    precision highp sampler2D;
-
-    varying vec2 vUv;
-    uniform sampler2D uTexture;
-    uniform float aspectRatio;
-
-    #define SCALE 25.0
-
-    void main () {
-        vec2 uv = floor(vUv * SCALE * vec2(aspectRatio, 1.0));
-        float v = mod(uv.x + uv.y, 2.0);
-        v = v * 0.1 + 0.8;
-        gl_FragColor = vec4(vec3(v), 1.0);
     }
 `);
 
@@ -947,7 +928,6 @@ const blurProgram = new Program(blurVertexShader, blurShader);
 const copyProgram = new Program(baseVertexShader, copyShader);
 const clearProgram = new Program(baseVertexShader, clearShader);
 const colorProgram = new Program(baseVertexShader, colorShader);
-const checkerboardProgram = new Program(baseVertexShader, checkerboardShader);
 const bloomPrefilterProgram = new Program(baseVertexShader, bloomPrefilterShader);
 const bloomBlurProgram = new Program(baseVertexShader, bloomBlurShader);
 const bloomFinalProgram = new Program(baseVertexShader, bloomFinalShader);
@@ -1294,7 +1274,6 @@ function render(target) {
     if (!config.TRANSPARENT)
         drawColor(target, normalizeColor(config.BACK_COLOR));
     if (target == null && config.TRANSPARENT)
-        drawCheckerboard(target);
     drawDisplay(target);
 }
 
@@ -1629,7 +1608,7 @@ function scaleByPixelRatio(input) {
 }
 
 function hashCode(s) {
-    if (s.length == 0) return 0;
+    if (s.length === 0) return 0;
     let hash = 0;
     for (let i = 0; i < s.length; i++) {
         hash = (hash << 5) - hash + s.charCodeAt(i);
@@ -1638,55 +1617,5 @@ function hashCode(s) {
     return hash;
 }
 
-function drawTransparentBackground(gl, width, height) {
-    // Disable depth testing and blend a transparent fragment
-    gl.disable(gl.DEPTH_TEST);
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-    // Create a full-screen transparent background quad
-    const vertices = new Float32Array([
-        -1.0, -1.0,
-        1.0, -1.0,
-        -1.0, 1.0,
-        1.0, 1.0
-    ]);
 
-    const vertexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-
-    const vertexShaderSource = `
-           attribute vec2 aPosition;
-           void main() {
-               gl_Position = vec4(aPosition, 0.0, 1.0);
-           }
-       `;
-
-    const fragmentShaderSource = `
-           void main() {
-               gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0); // Fully transparent fragment
-           }
-       `;
-
-    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-    gl.shaderSource(vertexShader, vertexShaderSource);
-    gl.compileShader(vertexShader);
-
-    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(fragmentShader, fragmentShaderSource);
-    gl.compileShader(fragmentShader);
-
-    const program = gl.createProgram();
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-    gl.linkProgram(program);
-
-    gl.useProgram(program);
-
-    const aPosition = gl.getAttribLocation(program, 'aPosition');
-    gl.enableVertexAttribArray(aPosition);
-    gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
-
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-}
