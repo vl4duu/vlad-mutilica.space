@@ -1,22 +1,27 @@
 body {
     font-family: "courier";
     font-size: 20px;
-    background-color: rgb(215, 253, 246); /* For browsers that do not support gradients */
-    background-image: linear-gradient(0deg, rgb(223, 220, 158), rgb(226, 255, 251));
+    background-color: rgba(54, 81, 82, 0.95); /* For browsers that do not support gradients */
+    background-image: radial-gradient(circle, rgba(121, 128, 91, 1) 15%, rgba(62, 71, 99, 1) 64%, rgba(35, 81, 97, 1) 100%);
+
     height: 100vh;
 
     margin: 0; /* Remove body margin to align content properly */
-    /*position: relative; !* Establish stacking context *!*/
-
+    /* Prevent text selection by default */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 canvas {
-    position: fixed; /* Fix it to the viewport */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Ensure it spans the entire width */
-    height: 100vh; /* Ensure it spans the entire height */
-    z-index: 1; /* Push it behind all other elements */
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .centered {
@@ -24,7 +29,7 @@ canvas {
     display: flex;
     justify-content: center;
     z-index: 10000;
-
+    position: relative; /* Establish stacking context */
 }
 
 .avatar-container {
@@ -48,4 +53,20 @@ canvas {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+/* Allow text selection inside the contents div */
+.contents {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+/* Style for horizontal rule */
+hr {
+    border: none;
+    height: 1px;
+    background-color: #333;
+    margin: 20px 0;
 }
