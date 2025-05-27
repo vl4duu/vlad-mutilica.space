@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "animejs": "^3.2.2",
+    "dat.gui": "^0.7.9",
     "gsap": "^3.12.5",
     "lit": "^3.2.1",
     "parcel": "^2.13.2"
