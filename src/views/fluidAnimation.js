@@ -24,35 +24,6 @@ SOFTWARE.
 
 'use strict';
 
-// Mobile promo section
-
-// const promoPopup = document.getElementsByClassName('promo')[0];
-const promoPopupClose = document.getElementsByClassName('promo-close')[0];
-
-// if (isMobile()) {
-//     setTimeout(() => {
-//         promoPopup.style.display = 'table';
-//     }, 20000);
-// }
-
-// promoPopupClose.addEventListener('click', e => {
-//     promoPopup.style.display = 'none';
-// });
-//
-// const appleLink = document.getElementById('apple_link');
-// appleLink.addEventListener('click', e => {
-//     ga('send', 'event', 'link promo', 'app');
-//     window.open('https://apps.apple.com/us/app/fluid-simulation/id1443124993');
-// });
-//
-// const googleLink = document.getElementById('google_link');
-// googleLink.addEventListener('click', e => {
-//     ga('send', 'event', 'link promo', 'app');
-//     window.open('https://play.google.com/store/apps/details?id=games.paveldogreat.fluidsimfree');
-// });
-
-// Simulation section
-
 const canvas = document.getElementsByTagName('canvas')[0];
 resizeCanvas();
 
@@ -60,22 +31,22 @@ let config = {
     SIM_RESOLUTION: 128,
     DYE_RESOLUTION: 1024,
     CAPTURE_RESOLUTION: 512,
-    DENSITY_DISSIPATION: 4,
+    DENSITY_DISSIPATION: 2,
     VELOCITY_DISSIPATION: 0.2,
     PRESSURE: 0.8,
     PRESSURE_ITERATIONS: 20,
     CURL: 30,
-    SPLAT_RADIUS: 0.25,
-    SPLAT_FORCE: 6000,
+    SPLAT_RADIUS: 0.3,
+    SPLAT_FORCE: 2000,
     SHADING: true,
     COLORFUL: false,
-    COLOR_UPDATE_SPEED: 5,
+    COLOR_UPDATE_SPEED: 0,
     PAUSED: false,
     BACK_COLOR: {r: 0, g: 0, b: 0},
     TRANSPARENT: true,
     BLOOM: true,
-    BLOOM_ITERATIONS: 8,
-    BLOOM_RESOLUTION: 256,
+    BLOOM_ITERATIONS: 5,
+    BLOOM_RESOLUTION: 567,
     BLOOM_INTENSITY: 0.8,
     BLOOM_THRESHOLD: 0.6,
     BLOOM_SOFT_KNEE: 0.7,
@@ -352,7 +323,7 @@ function compileShader(type, source, keywords) {
         console.trace(gl.getShaderInfoLog(shader));
 
     return shader;
-};
+}
 
 function addKeywords(source, keywords) {
     if (keywords == null) return source;
@@ -1069,7 +1040,7 @@ function updateKeywords() {
 
 updateKeywords();
 initFramebuffers();
-multipleSplats(parseInt(Math.random() * 20) + 5);
+multipleSplats(parseInt(Math.random() * 0.1) + 5);
 
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
@@ -1479,9 +1450,10 @@ function correctDeltaY(delta) {
 
 function generateColor() {
     let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-    c.r *= 0.15;
-    c.g *= 0.15;
-    c.b *= 0.15;
+    let factor = 500
+    c.r = 11 / factor;
+    c.g = 38 / factor;
+    c.b = 29 / factor;
     return c;
 }
 
