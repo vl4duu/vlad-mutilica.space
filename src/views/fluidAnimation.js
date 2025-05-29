@@ -1367,7 +1367,6 @@ window.addEventListener('touchstart', e => {
         return; // Let the browser handle the touch
     }
 
-    e.preventDefault();
     const touches = e.targetTouches;
     while (touches.length >= pointers.length)
         pointers.push(new pointerPrototype());
@@ -1380,7 +1379,6 @@ window.addEventListener('touchstart', e => {
 });
 
 window.addEventListener('touchmove', e => {
-    e.preventDefault();
     const touches = e.targetTouches;
     let rect = canvas.getBoundingClientRect();
     for (let i = 0; i < touches.length; i++) {
