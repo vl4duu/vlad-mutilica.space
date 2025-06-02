@@ -25,6 +25,23 @@ class PortfolioPage extends LitElement {
       const accordionsElement = this.shadowRoot.querySelector('.accordions');
       const textElements = this.shadowRoot.querySelectorAll('.accordion .text');
       const accordionElements = this.shadowRoot.querySelectorAll('.accordion');
+      const topSpacerElement = this.shadowRoot.querySelector('.wrapper > .spacer:first-of-type');
+
+      // Animation for the top spacer
+      gsap.to(topSpacerElement, {
+        scrollTrigger: {
+          trigger: topSpacerElement,
+          start: 'top 90%',
+          end: 'bottom 10%',
+          scrub: 6,
+          ease: 'power2.inOut',
+          markers: false, // Set to true for debugging
+        },
+        height: '15vh',
+        opacity: 0.8, // Slight opacity change for visual feedback
+        duration: 1.5,
+        ease: 'power2.out'
+      });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -32,7 +49,7 @@ class PortfolioPage extends LitElement {
           pin: true,
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.5,
+          scrub: 1,
           ease: 'linear',
         }
       });
@@ -75,9 +92,9 @@ class PortfolioPage extends LitElement {
               </div>
             </div>
           `)}
-          <div class="campfire-container">
-            <camp-fire></camp-fire>
-          </div>
+<!--          <div class="campfire-container">-->
+<!--            <camp-fire></camp-fire>-->
+<!--          </div>-->
         </div>
         <div class="spacer"></div>
       </div>

@@ -7,7 +7,7 @@ html, body {
 
 body {
   font-family: sans-serif;
-  background: linear-gradient(90deg,rgba(116, 125, 82, 1) 0%, rgba(62, 71, 99, 1) 35%, rgba(75, 82, 84, 1) 100%);
+  background: linear-gradient(90deg, rgba(116, 125, 82, 1) 0%, rgba(62, 71, 99, 1) 35%, rgba(75, 82, 84, 1) 100%);
 }
 
 *, *::before, *::after {
@@ -61,7 +61,7 @@ body {
   }
 
   &:nth-child(4) {
-    background: linear-gradient(200deg, #d11537 13.57%, #a11345 98.38%);
+    background: linear-gradient(200deg, rgb(101, 187, 118) 13.57%, rgb(70, 111, 171) 98.38%);
   }
 }
 
@@ -75,5 +75,10 @@ body {
   }
   .title {
     font-size: 20px;
+  }
+  .pageTitle {
+    padding-left: 0;
+    width: 100%;
+    text-align: center;
   }
 }
