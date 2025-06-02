@@ -1,12 +1,17 @@
-body {
+html, body {
   margin: 0;
-  background: #fff;
+  padding: 0;
+  box-sizing: border-box;
+  overscroll-behavior: none; /* Disables overscrolling effect */
+}
+
+body {
   font-family: sans-serif;
   background: linear-gradient(90deg,rgba(116, 125, 82, 1) 0%, rgba(62, 71, 99, 1) 35%, rgba(75, 82, 84, 1) 100%);
 }
 
-html, body {
-  overscroll-behavior: none; /* Disables overscrolling effect */
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 
@@ -56,7 +61,7 @@ html, body {
   }
 
   &:nth-child(4) {
-    background: linear-gradient(200deg, #c215d1 13.57%, #9813a1 98.38%);
+    background: linear-gradient(200deg, #d11537 13.57%, #a11345 98.38%);
   }
 }
 

@@ -1,0 +1,56 @@
+{
+  "portfolioItems": [
+    {
+      "title": "RAG Repository Analyser",
+      "text": "This project demonstrates a Retrieval Augmented Generation (RAG) system for answering questions about a GitHub repository. It leverages ChromaDB for efficient vector similarity search and OpenAI's embedding models for representing textual and code data.",
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/vl4duu/RAG-Repository-Analyzer"
+        }
+      ]
+    },
+    {
+      "title": "NextGenVet.ro",
+      "text": "Online platform for a Vet clinic. The Website is built with Next.js and Tailwind CSS.",
+      "links": [
+        {
+          "type": "website",
+          "url": "https://nextgenvet.ro"
+        },
+        {
+          "type": "github",
+          "url": "https://github.com/vl4duu/next-gen-vet"
+        }
+      ]
+    },
+    {
+      "title": "Space Invaders",
+      "text": "This piece of game has been made for my Game Development course in third year using C# in Unity3D. The main feature that this game offers is represented by the Terminal style menu. Many thanks to my brother for composing the music and to KenzeWee VulpsVulps for designing the Artwork.",
+      "links": [
+        {
+          "type": "website",
+          "url": "https://vl4duu.itch.io/space-invaders"
+        },
+        {
+          "type": "github",
+          "url": "https://github.com/vl4duu/Space-Invaders"
+        }
+      ]
+    },
+    {
+      "title": "Locomobile.co",
+      "text": "Online platform for a personal marketing project. The project is built with Vue.js. The 3D model is created with Blender and rendered with Three.js.",
+      "links": [
+        {
+          "type": "website",
+          "url": "https://locomobile.co"
+        },
+        {
+          "type": "github",
+          "url": "https://github.com/vl4duu/locomobile.co"
+        }
+      ]
+    }
+  ]
+}
