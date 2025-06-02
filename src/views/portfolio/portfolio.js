@@ -10,7 +10,6 @@ import { styles } from './styles.js';
 gsap.registerPlugin(ScrollTrigger);
 
 class PortfolioPage extends LitElement {
-  // Map link types to logo filenames
   logoMap = {
     github: 'github_logo.png',
     website: 'web_page_logo.png'
@@ -89,7 +88,6 @@ class PortfolioPage extends LitElement {
 
 customElements.define('portfolio-page', PortfolioPage);
 
-// Initialize the component when the page loads
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.createElement('portfolio-page');
   document.body.appendChild(app);
