@@ -36,11 +36,11 @@ let config = {
     PRESSURE: 0.8,
     PRESSURE_ITERATIONS: 20,
     CURL: 30,
-    SPLAT_RADIUS: 0.3,
-    SPLAT_FORCE: 2000,
+    SPLAT_RADIUS: 0.15,
+    SPLAT_FORCE: 1000,
     SHADING: true,
     COLORFUL: false,
-    COLOR_UPDATE_SPEED: 0,
+    COLOR_UPDATE_SPEED: 1,
     PAUSED: false,
     BACK_COLOR: {r: 0, g: 0, b: 0},
     TRANSPARENT: true,
@@ -1297,9 +1297,7 @@ function splatPointer(pointer) {
 function multipleSplats(amount) {
     for (let i = 0; i < amount; i++) {
         const color = generateColor();
-        color.r *= 10.0;
-        color.g *= 10.0;
-        color.b *= 10.0;
+
         const x = Math.random();
         const y = Math.random();
         const dx = 1000 * (Math.random() - 0.5);
@@ -1447,10 +1445,10 @@ function correctDeltaY(delta) {
 
 function generateColor() {
     let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-    let factor = 500
-    c.r = 11 / factor;
-    c.g = 38 / factor;
-    c.b = 29 / factor;
+    let rate = 500
+    c.r = 15 / rate;
+    c.g = 14 / rate;
+    c.b = 20 / rate;
     return c;
 }
 
