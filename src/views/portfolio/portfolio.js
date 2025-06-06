@@ -33,8 +33,9 @@ class PortfolioPage extends LitElement {
           trigger: topSpacerElement,
           start: 'top 90%',
           end: 'bottom 10%',
-          scrub: 6,
-          ease: 'power2.inOut',
+          scrub: 4,
+          duration:3,
+          ease: "back.out(10)",
           markers: false, // Set to true for debugging
         },
         height: '15vh',
