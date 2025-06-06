@@ -2,6 +2,8 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {LitElement, html} from 'lit';
 import portfolioData from './constants.json';
+import githubLogo from '../../views/assets/logos/github_logo.png';
+import webPageLogo from '../../views/assets/logos/web_page_logo.png';
 import './campFire/CampFire';
 import {styles} from './styles.js';
 
@@ -12,6 +14,7 @@ class PortfolioPage extends LitElement {
         github: new URL('../../views/assets/logos/github_logo.png', import.meta.url).href,
         website: new URL('../../views/assets/logos/web_page_logo.png', import.meta.url).href
     };
+
 
     static get styles() {
         return styles;
@@ -88,3 +91,22 @@ class PortfolioPage extends LitElement {
                                     `)}
                                 </div>
                             </div>
+                            <div class="text">
+                                ${item.text}
+                            </div>
+                        </div>
+                    `)}
+                </div>
+                <div class="spacer"></div>
+            </div>
+
+        `;
+    }
+}
+
+customElements.define('portfolio-page', PortfolioPage);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const app = document.createElement('portfolio-page');
+    document.body.appendChild(app);
+});
