@@ -28,23 +28,23 @@ const canvas = document.getElementsByTagName('canvas')[0];
 resizeCanvas();
 
 let config = {
-    SIM_RESOLUTION: 128,
-    DYE_RESOLUTION: 1024,
+    SIM_RESOLUTION: 256,
+    DYE_RESOLUTION: 2048,
     CAPTURE_RESOLUTION: 512,
     DENSITY_DISSIPATION: 2,
     VELOCITY_DISSIPATION: 0.2,
     PRESSURE: 0.8,
     PRESSURE_ITERATIONS: 20,
     CURL: 30,
-    SPLAT_RADIUS: 0.15,
-    SPLAT_FORCE: 1000,
-    SHADING: true,
+    SPLAT_RADIUS: 0.3,
+    SPLAT_FORCE: 2000,
+    SHADING: false,
     COLORFUL: false,
-    COLOR_UPDATE_SPEED: 1,
+    COLOR_UPDATE_SPEED: 0,
     PAUSED: false,
     BACK_COLOR: {r: 0, g: 0, b: 0},
     TRANSPARENT: true,
-    BLOOM: true,
+    BLOOM: false,
     BLOOM_ITERATIONS: 5,
     BLOOM_RESOLUTION: 567,
     BLOOM_INTENSITY: 0.8,
@@ -1040,6 +1040,7 @@ function updateKeywords() {
 
 updateKeywords();
 initFramebuffers();
+multipleSplats(parseInt(Math.random() * 0.1) + 5);
 
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
@@ -1183,7 +1184,7 @@ function render(target) {
     if (!config.TRANSPARENT)
         drawColor(target, normalizeColor(config.BACK_COLOR));
     if (target == null && config.TRANSPARENT)
-    drawDisplay(target);
+        drawDisplay(target);
 }
 
 function drawColor(target, color) {
@@ -1445,7 +1446,7 @@ function correctDeltaY(delta) {
 
 function generateColor() {
     let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-    let rate = 500
+    let rate = 1500
     c.r = 15 / rate;
     c.g = 14 / rate;
     c.b = 20 / rate;
