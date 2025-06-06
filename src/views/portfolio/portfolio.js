@@ -19,6 +19,18 @@ class PortfolioPage extends LitElement {
         return styles;
     }
 
+    get githubLogoSrc() {
+        return typeof githubLogo === 'string' ? githubLogo : githubLogo.default || githubLogo.src || String(githubLogo);
+    }
+
+    get webPageLogoSrc() {
+        return typeof webPageLogo === 'string' ? webPageLogo : webPageLogo.default || webPageLogo.src || String(webPageLogo);
+    }
+
+    getLogoSrc(linkType) {
+        return linkType === 'github' ? this.githubLogoSrc : this.webPageLogoSrc;
+    }
+
     firstUpdated() {
         setTimeout(() => {
             // Get references to elements in the shadow DOM
@@ -80,7 +92,7 @@ class PortfolioPage extends LitElement {
                                 <div class="links">
                                     ${item.links.map(link => html`
                                         <a href="${link.url}">
-                                            <img src="${link.type === 'github' ? githubLogo : webPageLogo}"
+                                            <img src="${this.getLogoSrc(link.type)}"
                                                  alt="${link.type}">
                                         </a>
                                     `)}
