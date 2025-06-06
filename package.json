@@ -11,7 +11,7 @@
     "parcel": "^2.13.2"
   },
   "scripts": {
-    "build": "parcel build src/views/index.html",
+    "build": "parcel build src/views/index.html src/views/portfolio/view.html",
     "start": "parcel serve src/views/index.html"
   },
   "name": "vlad-mutilica.space",

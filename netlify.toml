@@ -1,6 +1,6 @@
 [[redirects]]
 from = '/*'
-to = "/src/views/index/index.html"
+to = "/src/views/index.html"
 status = 200
 [build.environment]
 NODE_VERSION = "18"
