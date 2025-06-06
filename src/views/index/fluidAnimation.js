@@ -811,7 +811,7 @@ const blit = (() => {
             gl.clearColor(0.0, 0.0, 0.0, 0.0);
             gl.clear(gl.COLOR_BUFFER_BIT);
         }
-        // CHECK_FRAMEBUFFER_STATUS();
+        CHECK_FRAMEBUFFER_STATUS();
         gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
     }
 })();
@@ -1040,8 +1040,8 @@ function updateKeywords() {
 
 updateKeywords();
 initFramebuffers();
-multipleSplats(parseInt(Math.random() * 0.1) + 5);
-
+spiralSplat(0.5, 0.5, 100, 5); // Create a spiral with 50 splats, 3 rotations, centered at (0.5, 0.5)
+// multipleSplats(100)
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
 update();
@@ -1322,6 +1322,41 @@ function splat(x, y, dx, dy, color) {
     blit(dye.write);
     dye.swap();
 }
+
+function spiralSplat(centerX, centerY, numSplats, rotations, color) {
+    if (!color) {
+        color = generateColor();
+    }
+
+    const growthFactor = 0.08; // Controls how quickly the spiral expands
+    const angleStep = (Math.PI * 1 * rotations) / numSplats; // Angle between each splat
+
+    for (let i = 0; i < numSplats; i++) {
+        // Calculate the angle and radius for this point in the spiral
+        const angle = i * angleStep;
+        const radius = growthFactor * angle / 10;
+
+        // Calculate position (x, y) on the spiral
+        // Convert from polar coordinates to canvas coordinates (0-1 range)
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+
+        // Ensure the coordinates stay within the canvas bounds (0-1)
+        const clampedX = Math.max(0, Math.min(1, x));
+        const clampedY = Math.max(0, Math.min(1, y));
+
+        // Calculate velocity (dx, dy) tangent to the spiral
+        // This creates a flow that follows the spiral's direction
+        const tangentAngle = angle + Math.PI / 2; // Perpendicular to the radius
+        const velocityMagnitude = 50 + i * 10; // Increasing velocity toward the outside
+        const dx = velocityMagnitude * Math.cos(tangentAngle);
+        const dy = velocityMagnitude * Math.sin(tangentAngle);
+
+        // Create the splat at this position with the calculated velocity
+        splat(clampedX, clampedY, dx, dy, color);
+    }
+}
+
 
 function correctRadius(radius) {
     let aspectRatio = canvas.width / canvas.height;
