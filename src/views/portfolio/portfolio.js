@@ -11,24 +11,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 class PortfolioPage extends LitElement {
     logoMap = {
-        github: 'github_logo.png',
-        website: 'web_page_logo.png'
+        github: '/assets/logos/github_logo.png',
+        website: '/assets/logos/web_page_logo.png'
     };
 
     static get styles() {
         return styles;
     }
 
-    get githubLogoSrc() {
-        return typeof githubLogo === 'string' ? githubLogo : githubLogo.default || githubLogo.src || String(githubLogo);
-    }
-
-    get webPageLogoSrc() {
-        return typeof webPageLogo === 'string' ? webPageLogo : webPageLogo.default || webPageLogo.src || String(webPageLogo);
-    }
-
     getLogoSrc(linkType) {
-        return linkType === 'github' ? this.githubLogoSrc : this.webPageLogoSrc;
+        return linkType === 'github' ? this.logoMap.github : this.logoMap.website;
     }
 
     firstUpdated() {
