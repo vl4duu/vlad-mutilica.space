@@ -35,10 +35,10 @@ class PortfolioPage extends LitElement {
                     end: 'bottom 10%',
                     scrub: 6,
                     ease: 'power2.inOut',
-                    markers: true, // Set to true for debugging
+                    markers: false, // Set to true for debugging
                 },
                 height: '15vh',
-                duration: 5,
+                duration: 10,
                 ease: "back.out(7)"
             });
 
