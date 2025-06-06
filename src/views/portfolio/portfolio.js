@@ -11,8 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 class PortfolioPage extends LitElement {
     logoMap = {
-        github: '/assets/logos/github_logo.png',
-        website: '/assets/logos/web_page_logo.png'
+        github: githubLogo,
+        website: webPageLogo
     };
 
     static get styles() {
