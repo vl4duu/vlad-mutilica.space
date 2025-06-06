@@ -2,8 +2,8 @@ import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {LitElement, html} from 'lit';
 import portfolioData from './constants.json';
-import githubLogo from '../assets/logos/github_logo.png';
-import webPageLogo from '../assets/logos/web_page_logo.png';
+import githubLogo from '../../views/assets/logos/github_logo.png';
+import webPageLogo from '../../views/assets/logos/web_page_logo.png';
 import './campFire/CampFire';
 import {styles} from './styles.js';
 
